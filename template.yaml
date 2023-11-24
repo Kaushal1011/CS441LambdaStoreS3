@@ -1,0 +1,44 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  cs441lambdastoreS3
+
+  Sample SAM Template for cs441lambdastoreS3
+
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 128
+    LoggingConfig:
+      LogFormat: JSON
+Resources:
+  LambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: win_counts/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Policies:
+        - S3ReadPolicy:
+            BucketName: buckerforsimrank
+        - S3WritePolicy:
+            BucketName: buckerforsimrank
+      Events:
+        GRPCApi:
+          Type: Api
+          Properties:
+            Path: /process_winner
+            Method: post
+
+Outputs:
+  ApiEndpoint:
+    Description: 'API Gateway endpoint URL for Prod stage'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/process_winner/'
+  LambdaFunctionArn:
+    Description: 'Lambda Function ARN'
+    Value: !GetAtt LambdaFunction.Arn
+  LambdaFunctionIamRole:
+    Description: 'Implicit IAM Role created for Lambda function'
+    Value: !GetAtt LambdaFunctionRole.Arn

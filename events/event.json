@@ -1,0 +1,30 @@
+{
+	"body": "CgV0aGllZg==",
+	"resource": "/process_winner",
+	"path": "/process_winner",
+	"httpMethod": "POST",
+	"isBase64Encoded": true,
+	"queryStringParameters": null,
+	"pathParameters": null,
+	"stageVariables": null,
+	"headers": {
+		"Content-Type": "application/grpc+proto"
+	},
+	"requestContext": {
+		"accountId": "123456789012",
+		"resourceId": "123456",
+		"stage": "prod",
+		"requestId": "example-request-id",
+		"requestTime": "09/Apr/2023:12:34:56 +0000",
+		"requestTimeEpoch": 1428582896000,
+		"identity": {
+			"sourceIp": "127.0.0.1",
+			"userAgent": "Custom User Agent String"
+		},
+		"path": "/prod/process_winner",
+		"resourcePath": "/process_winner",
+		"httpMethod": "POST",
+		"apiId": "1234567890",
+		"protocol": "HTTP/1.1"
+	}
+}
